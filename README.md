@@ -75,6 +75,11 @@ A aplicação pode ser acessada através do GitHub Pages:
 
 **[Acessar SmartCondo](https://icei-puc-minas-pmv-ads.github.io/pmv-ads-2025-2-e1-proj-web-t9-smartcondo/index.html)**
 
+### 🔑 Acesso para demonstração
+
+**E-mail:** visitante@smartcondo.com  
+**Senha:** visitante123
+
 ## 👥 Equipe
 
 - Vítor Machado Coelho
