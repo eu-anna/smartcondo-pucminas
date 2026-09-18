@@ -1,0 +1,466 @@
+/* CSS BASE */
+:root {
+  --blue-dark: #05233a;
+  --blue-light: #1d67a4;
+  --gray-light: #f9f9f9;
+  --gray-medium: #ddd;
+  --gray-dark: #333;
+  --green: #4CAF50;
+  --red: #f44336;
+  --orange: #ffb347;
+  --button-blue: #cee4ff;
+  --button-blue-hover: #b3d2fb;
+}
+
+body, html {
+  margin: 0; padding: 0; height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: var(--gray-dark);
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+  color: var(--gray-dark);
+}
+
+/* Botão de menu para mobile */
+.menu-toggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: var(--blue-dark);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+/* Sidebar */
+nav.sidebar {
+  background-color: var(--blue-dark);
+  width: 230px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  transition: transform 0.3s ease; /* Animação para mobile */
+}
+nav.sidebar .logo {
+  margin-bottom: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+nav.sidebar .logo img {
+  width: 70px;
+  display: block;
+  margin: 0 auto 8px;
+}
+nav.sidebar .logo span {
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+nav.sidebar button {
+  background: none;
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 15px 25px;
+  text-align: left; /* Alinha o texto à esquerda */
+  font-size: 16px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Garante alinhamento à esquerda */
+  gap: 8px;
+}
+nav.sidebar button.active, nav.sidebar button:hover {
+  background-color: var(--blue-light);
+  border-left: 4px solid white;
+}
+nav.sidebar button .icon {
+  font-size: 18px;
+}
+
+/* Main area */
+main.content {
+  background-color: white;
+  flex: 1;
+  padding: 30px 40px;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header user info top right */
+.user-info {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #444;
+}
+.user-info img.avatar {
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+}
+
+/* Tabela - Ordem de serviços */
+table.os-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 50px;
+  min-width: 700px;
+  max-width: 100%;
+}
+table.os-table th, table.os-table td {
+  border-bottom: 1px solid var(--gray-medium);
+  padding: 10px 12px;
+  font-size: 14px;
+}
+table.os-table th {
+  text-align: left;
+  font-weight: 600;
+}
+table.os-table td {
+  vertical-align: middle;
+}
+table.os-table td.status-closed {
+  color: green;
+}
+table.os-table td.status-open {
+  color: #1d67a4;
+  cursor: default;
+}
+table.os-table td.priority {
+  font-weight: 600;
+}
+button.ver-btn {
+  background-color: var(--button-blue);
+  border: 1px solid var(--button-blue);
+  color: var(--blue-dark);
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+}
+button.ver-btn:hover {
+  background-color: var(--button-blue-hover);
+  border-color: var(--button-blue-hover);
+}
+
+/* Modal detalhes Ordem de Serviço */
+#modalOSDetails {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+#modalOSDetails.active {
+  display: flex;
+}
+#modalOSDetails .modal-content {
+  background: white;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 95%;
+  padding: 20px 25px 25px 25px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  position: relative;
+}
+#modalOSDetails .modal-content h2 {
+  text-align: center;
+  margin-top: 0;
+  font-weight: 700;
+}
+#modalOSDetails label {
+  display: block;
+  font-weight: 600;
+  margin-top: 15px;
+  font-size: 14px;
+}
+#modalOSDetails input[type=text],
+#modalOSDetails textarea {
+  width: 100%;
+  font-size: 14px;
+  padding: 7px 8px;
+  margin-top: 6px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+#modalOSDetails textarea {
+  resize: vertical;
+  height: 70px;
+}
+
+#modalOSDetails .btn-group {
+  margin-top: 25px;
+  text-align: center;
+}
+#modalOSDetails button {
+  font-size: 14px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 6px;
+  min-width: 70px;
+}
+#modalOSDetails button.iniciar {
+  background-color: #7da0d6;
+  color: white;
+}
+#modalOSDetails button.voltar {
+  background-color: #e74c3c;
+  color: white;
+}
+#modalOSDetails button.concluir {
+  background-color: #27ae60;
+  color: white;
+}
+
+/* Container geral da ocorrência */
+.occurrence-container {
+  max-width: 900px;
+  margin: 60px auto 0 auto;
+  padding: 0 15px;
+}
+
+/* Título principal */
+.occurrence-container h1 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Container geral da ocorrência */
+.occurrence-container {
+  max-width: 900px;
+  margin: 60px auto 0 auto;
+  padding: 0 15px;
+}
+
+/* Título principal */
+.occurrence-container h1 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Formulário "Registrar nova ocorrência" grande e centralizado */
+.new-occurrence {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 0 auto 40px auto;
+  box-sizing: border-box;
+  max-width: 700px; /* largura maior */
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.new-occurrence label {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.new-occurrence input[type=text],
+.new-occurrence select,
+.new-occurrence textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.new-occurrence textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.new-occurrence button.submit-occurrence {
+  background-color: #f4a261;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+/* Container das ocorrências (lateral) */
+#occurrenceCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+/* Card individual */
+.occurrence-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px 20px;
+  width: calc(50% - 20px); /* dois cards por linha com gap */
+  box-sizing: border-box;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  margin-bottom: 15px;
+}
+
+.occurrence-card strong {
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: block;
+  font-size: 15px;
+}
+
+.occurrence-card small {
+  color: #666;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 13px;
+}
+
+/* Status das ocorrências */
+.status-pill {
+  font-weight: 700;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  display: inline-block;
+  color: white;
+  white-space: nowrap;
+}
+
+.status-pendente {
+  background-color: #f44336;
+}
+
+.status-resolvido {
+  background-color: #4CAF50;
+}
+
+.status-em-andamento {
+  background-color: #ffb347;
+}
+
+/* === RESPONSIVIDADE SMARTCONDO (MOBILE) === */
+@media (max-width: 768px) {
+  /* Sidebar vira menu fixo inferior */
+  nav.sidebar {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    width: 100% !important;
+    height: 56px !important;
+    background-color: var(--blue-dark);
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+    z-index: 10000; 
+  }
+	
+  nav.sidebar .logo {
+    display: none;
+  }
+  nav.sidebar button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 12px;
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 0;
+  }
+  nav.sidebar button.active {
+    background-color: var(--blue-light);
+    border-radius: 4px 4px 0 0;
+  }
+  
+  /* Ajusta main */
+  main.content {
+    padding: 20px 16px 80px 16px;
+    overflow-x: auto; /* adiciona rolagem horizontal para tabelas largas */
+  }
+
+  /* Mostrar tabela no celular e torná-la responsiva */
+  table.os-table {
+    display: table !important;
+    width: 100% !important;
+    min-width: 0 !important; /* Remove largura mínima */
+    max-width: 100% !important;
+  }
+  
+  /* Fundo transparente do avatar e nome */
+  .user-info {
+    background-color: transparent !important;
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #444;
+  }
+
+  .user-info img.avatar {
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    background-color: transparent !important;
+  }
+
+  /* Ajustes para o cabeçalho no mobile */
+  .header-top {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 20px 16px 0 16px !important;
+    gap: 10px !important;
+    color: #333333 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    height: 50px !important;
+    background-color: transparent !important; /* fundo transparente do header */
+  }
+
+  .header-top h1 {
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}

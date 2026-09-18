@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SmartCondo - Sistema</title>
+<link rel="stylesheet" href="style.css" /> <!-- Adicione esta linha para linkar o CSS -->
+<!-- <link rel="stylesheet" href="../../css/global.css" /> -->
+<link rel="stylesheet" href="./notifications/not.css" />
+<link rel="icon" type="image/png" href="../../assets/img/smart.png" />
+</head>
+<body>
+
+<div id="login-page" style="display:none;">
+  <h1>SmartCondo</h1>
+  <button id="btnLogin">Entrar</button>
+</div>
+
+<div id="app" style="display:none;">
+  <nav class="sidebar">
+    <div class="logo">
+      <img src="../../assets/img/logo_img.png" alt="Logo" />
+      <span>SmartCondo</span>
+    </div>
+    <button id="btnOrders" class="active"><span class="icon">&#128295;</span> Ordem de serviços</button>
+    <button id="btnOccurrence"><span class="icon">&#128221;</span> Ocorrência</button>
+    <button id="btnMessage"><span class="icon">✉️</span> Comunicados</button>
+    <button id="btnLogout"><span class="icon">🚪</span> Sair</button> <!-- Removido margin-top:auto; para ficar logo abaixo de Ocorrência -->
+  </nav>
+
+  <main class="content">
+	<!-- Header com user-info e título -->
+    <header class="header-top">
+	  <!-- User info -->
+      <div class="user-info">
+       <img class="avatar" src="../../assets/icon/profile.svg" alt="profile" />
+       <div id="userName">João Pereira, Eletricista</div>
+	  </div>
+	</header>
+
+    <!-- Ordem de serviços - Tela 1-->
+    <section id="ordersSection">
+      <h1>Ordem de serviços</h1>
+      <table class="os-table">
+        <thead>
+          <tr>
+            <th>O.S:</th>
+            <th>Título</th>
+            <th>Categoria</th>
+            <th>Status</th>
+            <th>Prioridade</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="ordersTableBody">
+          <!-- preenchido via JS -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Modal Ordem serviço detalhes -->
+    <div id="modalOSDetails">
+      <div class="modal-content">
+        <h2>Ordem de serviço</h2>
+        <form id="osForm">
+          <label for="osNumber">Número da O.S:</label>
+          <input type="text" id="osNumber" readonly />
+
+          <label for="osPriority">Prioridade</label>
+          <input type="text" id="osPriority" readonly />
+
+          <label for="osTitle">Título:</label>
+          <input type="text" id="osTitle" readonly />
+
+          <label for="osOccurrence">Ocorrência Vinculada (se aplicável):</label>
+          <input type="text" id="osOccurrence" readonly />
+
+          <label for="osDateSuggested">Data sugerida</label>
+          <input type="text" id="osDateSuggested" readonly />
+
+          <label for="osResponsible">Responsável pela execução</label>
+          <input type="text" id="osResponsible" readonly />
+
+          <label for="osLocal">Local:</label>
+          <input type="text" id="osLocal" readonly />
+
+          <label for="osDescription">Descrição</label>
+          <textarea id="osDescription" rows="4" readonly></textarea>
+
+          <div class="btn-group">
+            <button type="button" class="iniciar" id="startOSBtn">Iniciar</button>
+            <button type="button" class="voltar" id="backOSBtn">Voltar</button>
+            <button type="button" class="concluir" id="completeOSBtn">Concluir</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tela Ocorrência -->
+ <section id="occurrenceSection" style="display:none;">
+  <h1>Ocorrência</h1>
+  <div class="occurrence-container">
+
+    <div class="new-occurrence">
+      <h3>Registrar nova ocorrência</h3>
+      <form id="occurrenceForm">
+        <label for="occTitle">Título</label>
+        <input type="text" id="occTitle" placeholder="Insira um título" required />
+
+        <label for="occCategory">Categoria</label>
+        <select id="occCategory" required>
+          <option value="" disabled selected>Selecione uma categoria</option>
+          <option value="Elétrica">Elétrica</option>
+          <option value="Hidráulica">Hidráulica</option>
+          <option value="Limpeza">Limpeza</option>
+          <option value="Outro">Outro</option>
+        </select>
+
+        <label for="occDescription">Descrição</label>
+        <textarea id="occDescription" placeholder="Descreva problema..." required></textarea>
+
+        <button type="submit" class="submit-occurrence">Enviar ocorrência</button>
+      </form>
+    </div>
+
+    <div class="occurrence-list">
+      <div>
+  <h2>Minhas ocorrências</h2>
+  <div id="occurrenceCardsContainer" class="occurrence-list">
+    <!-- Os cards serão gerados aqui via JavaScript -->
+  </div>
+</div>
+
+<!-- Modal para mostrar detalhes da ocorrência -->
+<div id="occurrenceDetailModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h2 id="detailTitle">Título da Ocorrência</h2>
+    <p id="detailDate">Data</p>
+    <p id="detailDescription">Descrição detalhada da ocorrência aparecerá aqui.</p>
+    <p><strong>Status: </strong><span id="detailStatus"></span></p>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- Tela de comunicados -->
+	<section id="messageSection" style="display: none;">
+				<h1>Comunicados</h1>
+				<div class="records">
+					<form action="">
+						<div class="form-rol">
+							<div class="form-group">
+								<label for="title">Titulo</label>
+								<input type="text" id="title" />
+							</div>
+							<div class="form-group">
+								<label for="selectTarget">Categoria</label>
+								<select
+									name="category"
+									id="selectTarget"
+								></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="text">Texto</label>
+							<input type="textarea" id="text" />
+						</div>
+						<button class="btn" id="btnNewNotification">Enviar</button>
+					</form>
+					<!-- Exibi apenas as notificações que o morador criou e enviou! -->
+					<div class="containerList">
+						<h5>Mensagens enviadas</h5>
+						<button id="open">Clique para abrir</button>
+						<button id="close">Clique para Fechar</button>
+						<div class="myNotifications">
+							<ul id="myListRender"></ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="containerAll">
+					<h3>Mensagens recebidas</h3>
+					<!-- Lista de notificações -->
+					<div class="containerList">
+						<div class="listNotifications">
+							<ul id="listRender"></ul>
+						</div>
+					</div>
+
+					<!-- Menu Referencia dos icones -->
+					<div class="containerList menu">
+						<h3>Referência</h3>
+						<div class="listNotifications">
+							<ul id="listRenderMenu">
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+	</section>
+
+  </main>
+</div>
+
+<script type="module" src="./notifications/js/index.js"></script>
+<script src="script.js"></script> <!-- Adicione esta linha para linkar o JS -->
+<script type="module" src="extensions.js"></script>  <!-- Adicione esta linha -->
+<script src="../../js/login.js"></script>
+</body>
+</html>

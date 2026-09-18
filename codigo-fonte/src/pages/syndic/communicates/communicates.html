@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Comunicados</title>
+		<link rel="stylesheet" href="../../../css/global.css" />
+		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="stylesheet"
+			href="../../../components/layoutHeader/layoutHeader.css"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			href="../../../assets/img/smart.png"
+		/>
+		<link rel="stylesheet" href="../../../js/modal/style.css">
+	</head>
+	<body>
+		<div class="container">
+			<!-- Componente Sidebar -->
+			<layout-sidebar role="syndic"></layout-sidebar>
+			<main class="content">
+				<!-- Componente Header -->
+				<layout-header title="Comunicados"></layout-header>
+
+				<!-- Cadastrar minhas notificacoes -->
+				<div class="records">
+					<form action="">
+						<div class="form-rol">
+							<div class="form-group">
+								<label for="title">Titulo</label>
+								<input type="text" id="title" />
+							</div>
+							<div class="form-group">
+								<label for="selectTarget">Categoria</label>
+								<select
+									name="category"
+									id="selectTarget"
+								></select>
+							</div>
+							<div class="form-group">
+								<label for="selectTo">Para:</label>
+								<select name="Destinatário" id="selectTo">
+									<option name="all">Todos</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="text">Texto</label>
+							<input type="textarea" id="text" />
+						</div>
+						<button class="btn" id="btnNewNotification">
+							Enviar
+						</button>
+						<button class="btn" id="btnSave">
+							Salvar
+						</button>
+					</form>
+				</div>
+
+				<div class="containerAll">
+					<button id="received" class="active">
+						Mensagens recebidas
+					</button>
+					<button id="sent">Mensagens enviadas</button>
+
+					<!-- Lista de notificações -->
+					<div class="containerList" isVisible="show">
+						<h3>Solicitações recebidas</h3>
+						<div class="listNotifications">
+							<ul id="listRender"></ul>
+						</div>
+					</div>
+
+					<!-- Exibi apenas as notificações que o morador criou e enviou! -->
+					<div class="my containerList" isVisible="hide">
+						<h3>Solicitações enviadas</h3>
+						<div class="myNotifications">
+							<ul id="myListRender"></ul>
+						</div>
+					</div>
+
+					<!-- Menu Referencia dos icones -->
+				</div>
+				<div class="containerList menu">
+					<h3>Referência</h3>
+					<div class="listNotifications">
+						<ul id="listRenderMenu"></ul>
+					</div>
+				</div>
+			</main>
+			<div class="confirm-overlay" id="confirmOverlay">
+				<div class="confirm-box">
+					<p id="confirmMessage">Tem certeza que deseja excluir?</p>
+					<button id="confirmNo">Cancelar</button>
+					<button id="confirmYes">Sim</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+		<layout-bottom-nav role="syndic"></layout-bottom-nav>
+
+		<script
+			type="module"
+			src="../../../components/layoutNavbar/index.js"
+		></script>
+		<script
+			type="module"
+			src="../../../components/layoutNavbar/layoutBottomNav.js"
+		></script>
+		<script
+			type="module"
+			src="../../../components/layoutHeader/layoutHeader.js"
+		></script>
+		<script type="module" src="../../login/auth/logout.js"></script>
+		<script type="module" src="./js/index.js"></script>
+	</body>
+</html>

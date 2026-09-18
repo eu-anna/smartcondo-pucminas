@@ -1,0 +1,448 @@
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+header {
+  color: white;
+  background: var(--background-linear);
+  max-height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#logo {
+  height: 85px;
+  margin: 10px;
+  margin-top: 15px;
+  margin-left: 47px;
+}
+
+.logoImage {
+  height: -webkit-fill-available;
+  width: 85px;
+}
+
+.logoText {
+  height: 22px;
+  width: 146px;
+  transform: translateY(-150%);
+}
+
+#menuHeader{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  list-style-type: none;
+  max-width: 400px;
+  width: 100%;
+}
+
+#menuHeader li{
+  font-size: 24px;
+  font-weight: 700;
+
+}
+
+.btnAccess {
+  width: 117.34px;
+  height: 46.32px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--background-button);
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+button:hover {
+  cursor: no-drop;
+  opacity: 0.3;
+}
+
+/* =========================================
+   CONTAINER PRINCIPAL
+========================================= */
+
+#container {
+  height: 688px;
+  background:  url("../../../assets/img/backLandingPage.png") right no-repeat,  /* primeira camada = imagem por cima */
+  var(--background-linear);
+  color: var(--text-color);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+#container button{
+  width: 218px;
+}
+
+#container .btnAccess {
+  margin-right: 23px;
+}
+
+.infoContainer{
+  width: 537px;
+  margin-left: 141px;
+  padding-top: 69.68px;
+  display: inline-block;
+}
+.infoContainer h1{
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 37px;
+}
+
+.infoContainer h4{
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 40.68px;
+}
+
+.backgroundImage{
+  display: inline-block;
+  height: 688px;
+  width: 100%;
+  background-image: url('../images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* =========================================
+   CARDS
+========================================= */
+
+#cardsContainer {
+  width: 100%;
+  height: 371px;
+  margin-top: 90px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+}
+
+#cards{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  width: inherit;
+}
+.card {
+  background: var(--tertiary-color);
+  width: 249.68px;
+  height: 371px;
+  border-radius: 8px;
+  padding: 40px 0 0 15px;
+  margin: 0 25px;
+  list-style-type: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+  border: none;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: default;
+}
+
+.card h3{
+  margin-top: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* =========================================
+   INFO SECTION
+========================================= */
+
+.info {
+  background-color: var(--secondary-color);
+  position: relative;
+  top: 169px;
+  padding: 371px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.bgInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1161px;
+  padding: 2rem;
+}
+
+.bgInfo h2{
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 24px;
+  text-align: center;
+  max-width: 950px;
+}
+
+.infoTextImg {
+  display: flex;
+  align-items: center;
+  margin-top: 36px;
+  background-image: url("../../../assets/img/imageInfo.png");
+  height: 325px;
+  background-position: 465px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+}
+.infoTextImg h3{
+  max-width: 400px;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+/* Tablets */
+@media (max-width: 992px) {
+  header {
+    padding: 1rem 2rem;
+  }
+
+  #logo{
+	margin: 0;
+	height: auto;
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #menuHeader {
+    gap: 1rem;
+    font-size: 18px;
+	justify-content: flex-end;
+	margin: 0;
+  }
+
+  .logoImage{
+	width: auto;
+  }
+
+  .logoText{
+	width: auto;
+	height: auto;
+	transform: translateY(0);
+  }
+
+  .infoContainer {
+    margin: 0 2rem;
+    width: auto;
+  }
+
+  .infoContainer h1 {
+    font-size: 38px;
+  }
+
+  #cardsContainer {
+	width: 100vw;
+  }
+
+  #cards {
+	width: inherit;
+  }
+
+  #cards h3{
+	font-size: 20px;
+	font-weight: 500;
+  }
+
+  .infoTextImg {
+    flex-direction: column;
+    height: 30rem;
+	background-position: center;
+	background-position-y: 2rem;
+	margin-top: 2rem;
+  }
+
+  .infoTextImg h3 {
+    max-width: 90%;
+  }
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+  header {
+    align-items: center;
+  }
+
+  #logo{
+	margin: 1rem;
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .logoText{
+	transform: translateY(0);
+  }
+
+  #menuHeader {
+    flex-direction: row;
+	align-items: center;
+    gap: 1rem;
+	margin: 0;
+  }
+
+  #menuHeader li{
+	display: none;
+  }
+
+  #container {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-position: center;
+	height: 100%;
+  }
+
+  .info{
+	top: 5rem;
+	padding: 3rem 0;
+  }
+
+  .infoContainer {
+    margin: 0;
+    padding: 20px;
+    width: 90%;
+  }
+
+  .infoContainer h1 {
+    font-size: 32px;
+  }
+
+  .infoContainer h4 {
+    font-size: 18px;
+  }
+
+  #menuHeader .btnAccess {
+    display: none;
+  }
+
+  #cardsContainer {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+	height: 540px;
+	position: relative;
+  }
+
+  #cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2rem;
+	justify-items: center;
+  }
+
+  .card {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .bgInfo h2 {
+    font-size: 28px;
+  }
+
+  .infoTextImg {
+	background-position: center;
+	background-position-y: 3rem;
+	height: 30rem;
+	margin-top: 2rem;
+  }
+
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  header {
+    padding: 1rem;
+  }
+  #container {
+	height: 450px;
+  }
+  #logo {
+	margin: 0;
+	height: auto;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logoImage {
+	width: 25%;
+  }
+
+  .logoText {
+	width: 50%;
+	transform: translateY(0);
+  }
+
+  #menuHeader {
+	display: none;
+  }
+
+  #cardsContainer {
+	margin-top: 28%;
+	padding: 2rem;
+	height: 1200px;
+	position: relative;
+	background: linear-gradient(180deg, #01717c 0%, #00253c 100%);
+  }
+  #cards{
+	display: flex;
+	flex-direction: column;
+	width: initial;
+  }
+
+  .card{
+	margin: 0;
+	margin-top: 2rem;
+	width: 100%;
+  }
+
+  .info {
+	top: 0;
+	background: linear-gradient(20deg, #01717c 0%, #00253c 100%);
+	padding: 20% 0;
+  }
+
+  .infoContainer h1 {
+    font-size: 26px;
+  }
+
+  .infoContainer h4 {
+    font-size: 16px;
+  }
+
+  .infoTextImg{
+	background-position: center;
+	background-position-y: 5rem;
+	height: 25rem;
+  }
+
+  .btnAccess {
+    font-size: 16px;
+    height: 40px;
+  }
+
+  .bgInfo h2 {
+    font-size: 24px;
+  }
+}

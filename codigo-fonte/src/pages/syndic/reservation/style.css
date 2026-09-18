@@ -1,0 +1,550 @@
+/* ===========================
+   Reservation — Responsive CSS
+   Replace your previous reservation CSS with this
+   =========================== */
+
+/* global reset for this file */
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--primary: #69B99D;
+	--primary-contrast: #ffffff;
+	--accent: #F6B25A;
+	--muted: #767676;
+	--bg-card: #ffffff;
+	--shadow: rgba(2, 6, 23, 0.06);
+	--danger: #f44336;
+	--success: #0b932b;
+}
+
+/* container that wraps cards + list + modal */
+.container {
+	width: 100%;
+	margin: 0 auto;
+}
+
+/* === CARDS TOP: Espaços comuns === */
+.cardContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 1rem;
+	margin: 1.5rem 0;
+	align-items: stretch;
+}
+
+/* individual card */
+.card {
+	background: var(--bg-card);
+	border-radius: 12px;
+	padding: 1.4rem 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.8rem;
+	box-shadow: 0 6px 18px var(--shadow);
+	border: 1px solid rgba(0, 0, 0, 0.03);
+	min-height: 170px;
+	transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.card img {
+	width: 72px;
+	height: 72px;
+	object-fit: contain;
+}
+
+.card strong {
+	margin-top: 0.25rem;
+	font-size: 1rem;
+	text-align: center;
+	color: #15323a;
+}
+
+/* CTA dentro do card */
+.card .actionButton {
+	margin-top: auto;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.card .actionButton .btn {
+	width: 100%;
+	max-width: 220px;
+	background: var(--primary);
+	color: var(--primary-contrast);
+	border-radius: 8px;
+	padding: 10px 14px;
+	border: none;
+	font-weight: 700;
+}
+
+/* === Reserva list / minhas reservas (cards list) === */
+.list {
+	display: grid;
+	gap: 12px;
+	padding: 10px 1rem;
+	width: 100%;
+}
+
+.cardList {
+	background: var(--bg-card);
+	border-radius: 12px;
+	box-shadow: 0 4px 14px var(--shadow);
+	padding: 14px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.cardList .info {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.cardList .info>div {
+	display: flex;
+	gap: 6px;
+	align-items: center;
+}
+
+/* status badge */
+.infoStatus {
+	padding: 6px 10px;
+	border-radius: 999px;
+	font-size: 0.85rem;
+	color: #fff;
+	font-weight: 700;
+}
+
+.infoStatus.pending {
+	background: var(--accent);
+	color: #111;
+	margin: auto 0;
+}
+
+.infoStatus.approved {
+	background: var(--success);
+}
+
+.infoStatus.reject {
+	background: var(--danger);
+}
+
+.infoStatus.rejected {
+	background: var(--danger);
+}
+
+/* actions (edit/delete) */
+.cardList .actions {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+}
+
+.cardList .actions button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 6px;
+	border-radius: 8px;
+}
+
+.cardList .actions img {
+	width: 20px;
+	height: 20px;
+}
+
+/* primary page buttons */
+button.btn {
+	margin-top: 0.4rem;
+	background-color: var(--background-button);
+	color: var(--primary-contrast);
+	border: none;
+	padding: 10px 16px;
+	border-radius: 8px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+/* === Modal (calendar + form) === */
+.modalOverlay,
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100dvh;
+	/* dynamic viewport height for mobile */
+	background: rgba(0, 0, 0, 0.5);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 1200;
+	padding: 1rem;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	padding-bottom: calc(env(safe-area-inset-bottom) + 16px);
+}
+
+.modalOverlay.active,
+.modal-overlay.active {
+	display: flex;
+}
+
+/* modal box */
+.modal {
+	width: 100%;
+	max-width: 980px;
+	background: #fff;
+	border-radius: 14px;
+	padding: 18px;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+	display: grid;
+	grid-template-columns: 1fr;
+	/* mobile default */
+	gap: 1rem;
+	max-height: 90dvh;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+/* calendar column and form column */
+.calendar {
+	padding: 8px;
+	overflow: auto;
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.getDayAndTime {
+	padding: 8px;
+	overflow: auto;
+}
+
+/* small screen form layout */
+.form-row {
+	display: flex;
+	gap: 12px;
+	margin-bottom: 12px;
+	flex-wrap: wrap;
+}
+
+.form-group {
+	flex: 1;
+	min-width: 140px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.form-group label {
+	font-weight: 600;
+	font-size: 0.95rem;
+	color: #222;
+}
+
+.form-group input,
+.form-group select {
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid #e6e6e6;
+	font-size: 14px;
+	background: #fff;
+}
+
+/* form buttons row */
+.form-buttons {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 8px;
+}
+
+.form-buttons button {
+	padding: 10px 14px;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+}
+
+.btnSave {
+	background: var(--background-button);
+	color: #fff;
+	font-weight: 700;
+}
+
+.btnClose {
+	background: #efefef;
+	color: #333;
+}
+
+.info {
+	margin-top: 1rem;
+}
+
+#statusApproved {
+	accent-color: var(--success);
+}
+
+#statusPending {
+	accent-color: var(--accent);
+}
+
+#statusReject,
+#statusRejected {
+	accent-color: var(--danger);
+}
+
+/* === Calendar styles === */
+.calendar-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	padding: 6px 0;
+}
+
+#monthSelect {
+	padding: 6px 10px;
+	border-radius: 8px;
+	border: 1px solid #e6e6e6;
+	font-weight: 600;
+}
+
+/* weekday row */
+.calendar-weekdays {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 6px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 0.85rem;
+	color: var(--muted);
+	margin-bottom: 6px;
+}
+
+/* days grid */
+.calendar-days {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 8px;
+}
+
+/* each day */
+.day {
+	background: #f8f9fa;
+	border-radius: 8px;
+	padding: 10px 6px;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	transition: transform .12s ease, background .12s ease;
+	min-height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.day:hover {
+	transform: translateY(-3px);
+	background: #eef3f4;
+}
+
+/* day states */
+.day.today {
+	background: #fff3d9;
+}
+
+.day.pending {
+	background: var(--accent);
+	color: #111;
+	cursor: not-allowed;
+}
+
+.day.approved {
+	background: var(--success);
+	color: #fff;
+	cursor: not-allowed;
+}
+
+.day.reject,
+.day.rejected {
+	background: var(--danger);
+	color: #fff;
+}
+
+.day.reserved {
+	background: #ccc;
+	color: #fff;
+	cursor: not-allowed;
+}
+
+/* active selection */
+.day.active {
+	outline: 3px solid rgba(6, 78, 86, 0.12);
+	background: rgba(6, 78, 86, 0.8);
+	color: #fff;
+}
+
+/* legend / filters */
+.legend {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-top: 8px;
+	flex-wrap: wrap;
+}
+
+.legend .item {
+	display: flex;
+	gap: 6px;
+	align-items: center;
+	font-size: 0.85rem;
+	color: #333;
+}
+
+.legend .swatch {
+	width: 14px;
+	height: 14px;
+	border-radius: 3px;
+}
+
+/* small helper */
+.info label {
+	font-size: 0.85rem;
+	color: #333;
+}
+
+/* === table/list layout for reservas (desktop) === */
+.reservation {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+/* list title area */
+.reservation .titlePage {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 8px 0.5rem;
+}
+
+/* alignment of reservation list on large screens */
+@media (min-width: 720px) {
+	.modal {
+		grid-template-columns: 1fr 360px;
+		padding: 22px;
+		gap: 18px;
+	}
+
+	.calendar {
+		max-height: 76vh;
+		overflow: auto;
+		padding-right: 6px;
+	}
+
+	.getDayAndTime {
+		max-height: 76vh;
+		overflow: auto;
+	}
+
+	.card {
+		padding: 2rem 1.2rem;
+	}
+
+	.card img {
+		width: 84px;
+	}
+}
+
+/* Prevent body/menu overlap on mobile when modal open
+   (if you control the bottom nav height, replace 60px) */
+body.modal-open {
+	overflow: hidden;
+	padding-bottom: calc(env(safe-area-inset-bottom) + 60px);
+}
+
+/* === Accessibility & small polish === */
+button,
+input,
+select,
+textarea {
+	font-family: inherit;
+}
+
+button:focus,
+input:focus,
+select:focus {
+	outline: 3px solid rgba(100, 150, 130, 0.12);
+	outline-offset: 2px;
+}
+
+/* === Hide horizontal overflow and fix content width issues === */
+html,
+body {
+	overflow-x: hidden;
+	width: 100%;
+}
+
+/* === Small devices tweaks === */
+@media (max-width: 420px) {
+	.card {
+		padding: 1rem;
+		min-height: 150px;
+	}
+
+	.card strong {
+		font-size: 0.95rem;
+	}
+
+	.form-row {
+		gap: 10px;
+	}
+
+	.form-group input {
+		padding: 10px;
+		font-size: 14px;
+	}
+
+	.calendar-weekdays {
+		font-size: 0.75rem;
+	}
+
+	.day {
+		padding: 8px;
+		min-height: 40px;
+		font-size: 0.9rem;
+	}
+
+	.cardContainer {
+		display: none;
+	}
+}
+
+/* === print-friendly small adjustments === */
+@media print {
+
+	.cardContainer,
+	.list,
+	.cardList {
+		box-shadow: none;
+		border: 1px solid #ddd;
+	}
+
+	.modalOverlay {
+		display: none !important;
+	}
+}

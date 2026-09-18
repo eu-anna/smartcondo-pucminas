@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartCondo - Ocorrências</title>
+
+  <link rel="stylesheet" href="../../../components/layoutNavbar/layoutNavbar.css" />
+  <link rel="stylesheet" href="../../../css/sindico-css/dashboard-sindico-occurrence.css" />
+  <link rel="icon" href="../../../assets/img/logo_img.png" type="image/png" />
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="../../../assets/img/smart.png" alt="SmartCondo Logo" />
+        <h2>SmartCondo</h2>
+      </div>
+
+      <nav class="menu">
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico.html">🏠 Visão Geral</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-morador.html">👥 Moradores</a>
+        <a href="../../../pages/syndic/employee/employee.html">👨‍💼 Funcionários</a>
+        <a href="../../../pages/syndic/communicates/communicates.html">✉️ Comunicados</a>
+
+        <a href="#" class="active">📋 Ocorrências</a>
+
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-ordem-servico.html">🛠️ Ordem de serviços</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-gestao.html">📅 Gestão de reservas</a>
+        <a href="../../../pages/syndic/reservation/reservation.html">📅 Reservas</a>
+        <a href="#" id="btnLogout">🚪 Sair</a>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+
+      <!-- TOPO (SEARCH + USER) -->
+      <header class="topbar">
+        <div class="search-box">
+          <input type="text" id="campoPesquisa" placeholder="Pesquisar por nome ou unidade..." />
+          <button class="search-btn" id="btnPesquisar">🔍</button>
+        </div>
+
+        <div class="user-info">
+          <span id="usuarioLogado"></span>
+          <img src="../../../assets/icon/profile.svg" alt="Usuário" />
+        </div>
+      </header>
+
+      <!-- CONTEÚDO -->
+      <section class="content">
+        <h1>Ocorrências</h1>
+
+        <!-- CARDS RESUMO -->
+        <div class="cards">
+
+          <!-- Abertas -->
+          <div class="card">
+            <div class="icon orange">📄</div>
+            <p>Abertas</p>
+            <h2 id="count-abertas">0</h2>
+          </div>
+
+          <!-- Em andamento -->
+          <div class="card">
+            <div class="icon blue">⏳</div>
+            <p>Em andamento</p>
+            <h2 id="count-andamento">0</h2>
+          </div>
+
+          <!-- Em execução -->
+          <div class="card">
+            <div class="icon darkblue">🔧</div>
+            <p>Em execução</p>
+            <h2 id="count-execucao">0</h2>
+          </div>
+
+          <!-- Concluídas -->
+          <div class="card">
+            <div class="icon green">✅</div>
+            <p>Concluídas</p>
+            <h2 id="count-concluidas">0</h2>
+          </div>
+
+        </div>
+
+        <h2 class="table-title">Lista de Ocorrências</h2>
+
+        <table class="table-ocorrencias">
+          <thead>
+            <tr>
+              <th class="col-id">ID</th>
+              <th>Título</th>
+              <th>Categoria</th>
+              <th>Status</th>
+              <th class="col-prioridade">Prioridade</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2 id="modalTitulo">Título da Ocorrência</h2>
+      <hr />
+
+      <div class="modal-info">
+
+        <p><strong>Protocolo:</strong> <span id="modalProtocolo"></span></p>
+        <p><strong>Solicitante:</strong> <span id="modalSolicitante"></span></p>
+        <p><strong>Data de Abertura:</strong> <span id="modalData"></span></p>
+
+        <label><strong>Status Atual:</strong>
+          <select id="modalStatus">
+            <option>Aberta</option>
+            <option>Em andamento</option>
+            <option>Em execução</option>
+            <option>Concluído</option>
+          </select>
+        </label>
+
+        <label><strong>Prioridade:</strong>
+          <select id="modalPrioridade">
+            <option value="" disabled selected>Selecione...</option>
+            <option value="Baixa">Baixa</option>
+            <option value="Média">Média</option>
+            <option value="Alta">Alta</option>
+          </select>
+        </label>
+
+        <label><strong>Descrição:</strong></label>
+        <textarea id="modalDescricao" readonly></textarea>
+
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn azul" id="btnAbrirOS">Abrir O.S</button>
+        <button class="btn vermelho" id="closeModal">Cancelar</button>
+        <button class="btn verde" id="btnSalvarModal">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR MOBILE -->
+  <nav class="bottom-nav">
+    <a href="../dashboard/dashboard-sindico.html">
+      <span>🏠</span>
+      <p>Visão Geral</p>
+    </a>
+
+    <a href="../dashboard/dashboard-sindico-morador.html">
+      <span>👥</span>
+      <p>Moradores</p>
+    </a>
+
+    <a href="../../../pages/syndic/employee/employee.html">
+      <span>👨‍💼</span>
+      <p>Funcionários</p>
+    </a>
+
+    <a href="../../../pages/syndic/communicates/communicates.html">
+      <span>✉️</span>
+      <p>Comunicados</p>
+    </a>
+
+    <button class="more-btn" id="openMore">
+      <span>➕</span>
+      <p>Mais</p>
+    </button>
+  </nav>
+
+  <!-- MENU FLUTUANTE -->
+  <div class="more-menu" id="moreMenu">
+    <a href="#" class="active">📋 Ocorrências</a>
+    <a href="../dashboard/dashboard-sindico-ordem-servico.html">🛠️ Ordem de serviços</a>
+    <a href="../dashboard/dashboard-sindico-gestao.html">📅 Gestão de reservas</a>
+    <a href="../reservation/reservation.html">📅 Reservas</a>
+    <a href="#" id="btnLogoutMobile">🚪 Sair</a>
+  </div>
+
+  <!-- SCRIPT PRINCIPAL DA PÁGINA -->
+  <script src="../../../js/dashboard-syndic-occurrence.js"></script>
+  <script type="module" src="../communicates/js/index.js"></script>
+
+  <!-- SCRIPT DE USUÁRIO + MENU + LOGOUT -->
+  <script type="module">
+    import { logout } from "../../login/auth/logout.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Usuário logado no topo
+      const usuarioSpan = document.getElementById("usuarioLogado");
+      const usuarioLogado = JSON.parse(sessionStorage.getItem("smartcondo_loggedInUser"));
+
+      if (usuarioLogado?.name) {
+        const cargo =
+          usuarioLogado.role === "syndic"
+            ? "Síndico"
+            : usuarioLogado.role === "resident"
+              ? "Morador"
+              : "Funcionário";
+
+        usuarioSpan.textContent = `${usuarioLogado.name}, ${cargo}`;
+      } else {
+        usuarioSpan.textContent = "Usuário";
+      }
+
+      // Menu "Mais" (mobile)
+      const btnMore = document.getElementById("openMore");
+      const menu = document.getElementById("moreMenu");
+
+      if (btnMore && menu) {
+        btnMore.addEventListener("click", (e) => {
+          e.stopPropagation();
+          menu.classList.toggle("show");
+        });
+
+        document.addEventListener("click", () => {
+          menu.classList.remove("show");
+        });
+      }
+
+      // Logout sidebar
+      const btnLogoutSidebar = document.getElementById("btnLogout");
+      if (btnLogoutSidebar) {
+        btnLogoutSidebar.addEventListener("click", (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+
+      // Logout menu flutuante
+      const btnLogoutMobile = document.getElementById("btnLogoutMobile");
+      if (btnLogoutMobile) {
+        btnLogoutMobile.addEventListener("click", (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>

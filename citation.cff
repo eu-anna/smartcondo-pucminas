@@ -1,0 +1,35 @@
+message: Please cite this software using these metadata.
+title: SmartCondo
+authors:
+    - family-names: Oliveira da Silva
+      given-names: Vinicius
+    - family-names: Machado Coelho
+      given-names: Vitor
+    - family-names:  dos Santos Monteiro Palmeira
+      given-names: Ana Paula
+    - family-names: Fernandes da Silva
+      given-names: Raul
+    - family-names: Almeida Espechit
+      given-names: Lucas
+    - family-names: Rocha Lemes
+      given-names: Arthur
+    - family-names: Clara dos Santos
+      given-names: Anna
+    - name-suffix: Professor
+      affiliation: PUC Minas
+      family-names: Tavares
+      given-names: Clovis
+
+keywords:
+    - Gestão
+    - Cadastro
+    - Reserva
+    - Comunicado
+    - Ocorrência
+    - Ordem de serviço
+    - Morador
+    - Funcionário
+
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e1-proj-web-t9-smartcondo/tree/main
+version: 1.0.0
+date-released: 2025-12-07

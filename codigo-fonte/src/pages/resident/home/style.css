@@ -1,0 +1,219 @@
+/* ======== Layout base ======== */
+@media (min-width: 350px) {
+	.chevronRight {
+		height: 1rem;
+		grid-row: 1;
+		grid-column: 2;
+		margin-right: 1rem;
+		transition: all 1s;
+		transform: rotateZ(90deg);
+	}
+
+	.chevronRight.active {
+		transform: rotateZ(0);
+	}
+
+	.reservations {
+		padding: 1rem;
+		display: flex;
+		flex-flow: column;
+		flex-wrap: nowrap;
+	}
+
+	h3 {
+		font-size: 28px;
+		font-weight: 100;
+		margin: 1rem 0;
+	}
+
+	.reservations h4 {
+		font-size: 22px;
+		font-weight: 100;
+		margin-bottom: 5px;
+	}
+
+	.card {
+		border-radius: 8px;
+		padding: 1rem;
+		margin: 0 0.5rem 1rem 0;
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
+		align-items: center;
+		border: none;
+		width: fit-content;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+	.card:hover {
+		transform: translateY(-10px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+	}
+
+	.chevronRight {
+		margin-left: 3rem;
+	}
+
+	.chevronRight img:hover {
+		background-color: #E0E0E0;
+		border-radius: 50%;
+		cursor: pointer;
+		padding: 0.5rem;
+	}
+
+	.actions {
+		margin-bottom: 5rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.newReservation,
+	.newOccurrence {
+		width: 10rem;
+		height: 5rem;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		font-size: 16px;
+		padding: 2rem;
+		transition: transform 0.2s ease;
+	}
+
+	.newReservation {
+		background: linear-gradient(135deg, #FFB74D 0%, #F59C39 100%);
+		color: var(--text-color);
+	}
+
+	.newOccurrence {
+		background-color: #C4E8F4;
+	}
+
+	img {
+		width: 2.5rem;
+	}
+}
+
+.newReservation:hover,
+.newOccurrence:hover {
+	transform: translateY(-2px);
+}
+
+/* ======== Mobile: bottom navigation ======== */
+@media (min-width: 768px) {
+.listOfAnnouncements{
+	margin-bottom: 3rem;
+}
+
+	.actions {
+		justify-content: flex-start;
+	}
+
+	.listOfAnnouncements ul li {
+		padding: 1rem 1rem;
+	}
+
+	.listOfAnnouncements ul li span {
+		margin-left: 3.5rem;
+		font-size: 20px;
+	}
+
+	.listOfAnnouncements ul li .icon {
+		height: 3rem;
+	}
+}
+
+
+@media (min-width: 992px) {
+	.listOfAnnouncements ul {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		border: none;
+		border-radius: 8px;
+		border-bottom: none;
+		margin-top: 70px;
+	}
+
+	.listOfAnnouncements ul li {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 1rem;
+		border-bottom: 1px solid #ccc;
+		padding: 0.5rem;
+		width: 100%;
+		font-size: 16px;
+	}
+
+	.listOfAnnouncements ul li img {
+		width: 1.5rem;
+	}
+
+	.listOfAnnouncements ul li span {
+		margin: 0;
+	}
+
+	.listOfAnnouncements ul li div {
+		width: auto;
+		height: auto;
+		opacity: 1;
+	}
+
+	.reservations {
+		flex-flow: row;
+	}
+
+	.reservations h4 {
+		font-size: 22px;
+		font-weight: 100;
+		margin-bottom: 5px;
+	}
+
+
+
+	.chevronRight {
+		display: none;
+	}
+
+	.actions {
+		margin-bottom: 4rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.newReservation,
+	.newOccurrence {
+		width: 12rem;
+		height: 5rem;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		font-size: 20px;
+		padding: 2rem;
+	}
+
+	.newReservation {
+		background: linear-gradient(135deg, #FFB74D 0%, #F59C39 100%);
+		color: var(--text-color);
+	}
+
+
+	.newOccurrence {
+		background-color: #C4E8F4;
+	}
+
+
+}

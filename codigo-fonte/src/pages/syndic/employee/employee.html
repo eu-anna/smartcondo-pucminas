@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lista de funcionários</title>
+		<link rel="stylesheet" href="./style.css" />
+		<link
+			rel="stylesheet"
+			href="../../../css/sindico-css/dashboard-sindico-morador.css"
+		/>
+		<link rel="stylesheet" href="../../../css/global.css" />
+		<link
+			rel="icon"
+			type="image/png"
+			href="../../../assets/img/smart.png"
+		/>
+		<link rel="stylesheet" href="../../../js/modal/style.css">
+	</head>
+	<body><!-- onload="listEmployees()" -->
+		<div class="container">
+			<!--html Personalizado ATRIBUTO ROLE - quem esta logado [syndic, resident, employee]-->
+			<layout-sidebar role="syndic"></layout-sidebar>
+
+			<main class="content">
+				<!--html personalizado o TITLE define qual será o titulo da pagina-->
+				<layout-header title="Lista de funcionários"></layout-header>
+				<!-- Campo de busca pelo nome do funcionário -->
+				<div class="searchBox">
+					<input
+						class="searchInput"
+						name="searchInput"
+						type="text"
+						placeholder="Buscar pelo nome ou pela profissão"
+					/>
+					<button class="btn openModalBtn">
+						Adicionar novo
+					</button>
+				</div>
+
+				<!-- Lista dos funcionários -->
+				 <div id="listEmployee" class="list"></div>
+
+					<div class="modalOverlay">
+						<div class="modal">
+							<form id="step1" class="form-step active">
+								<h3>Dados pessoais</h3>
+								<div class="form-row">
+									<div class="form-group">
+										<label for="name">Nome:</label>
+										<input
+											type="text"
+											placeholder="Digite o nome"
+											id="name"
+										/>
+									</div>
+									<div class="form-group">
+										<label for="cpf">CPF:</label>
+										<input
+											type="text"
+											placeholder="Digite o CPF - 11122233300"
+											id="cpf"
+										/>
+									</div>
+
+								</div>
+
+								<div class="form-row">
+										<div class="form-group">
+										<label for="startTime">Entrada:</label>
+										<input
+											type="time"
+											id="startTime"
+											maxlength="5"
+											required
+										/>
+									</div>
+										<div class="form-group">
+										<label for="endTime">Saída:</label>
+										<input
+											type="time"
+											id="endTime"
+											maxlength="5"
+											required
+										/>
+									</div>
+										<div class="form-group">
+											<label for="position">Cargo:</label>
+												<select name="position" id="position">
+													<option selected ="porteiro">Porteiro</option>
+													<option value="Zelador">Zelador</option>
+													<option value="Seguranca">Seguranca</option>
+													<option value="Asg">Asg</option>
+													<option value="Eletricista">Eletricista</option>
+												</select>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group">
+										<label for="email">Email:</label>
+										<input
+											type="email"
+											placeholder="Digite o e-mail"
+											id="email"
+										/>
+									</div>
+
+									<div class="form-group">
+										<label for="contact">Telefone:</label>
+										<input
+											type="text"
+											placeholder="(xx) xxxxx-xxxx"
+											id="contact"
+										/>
+									</div>
+								</div>
+
+								<div class="form-buttons">
+									<button
+										class="closeModalBtn"
+										type="button"
+										id="btnClose"
+									>
+										Cancelar
+									</button>
+									<button type="button" class="btnSave">
+										Salvar
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</section>
+			</main>
+			<div class="confirm-overlay" id="confirmOverlay">
+				<div class="confirm-box">
+					<p id="confirmMessage">Tem certeza que deseja excluir?</p>
+					<button id="confirmNo">Cancelar</button>
+					<button id="confirmYes">Sim</button>
+				</div>
+			</div>
+		</div>
+
+		<layout-bottom-nav class="bottom-nav" role="syndic"></layout-bottom-nav>
+		<app-loader></app-loader>
+
+		<script type="module" src="./js/index.js"></script>
+		<script
+			type="module"
+			src="../../../components/layoutNavbar/index.js"
+		></script>
+		<script
+			type="module"
+			src="../../../components/layoutNavbar/layoutBottomNav.js"
+		></script>
+		<script
+			type="module"
+			src="../../../components/layoutHeader/layoutHeader.js"
+		></script>
+		<script type="module" src="../../../components/loader/loader.js"></script>
+	</body>
+</html>

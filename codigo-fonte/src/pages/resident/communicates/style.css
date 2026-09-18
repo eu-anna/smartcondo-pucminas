@@ -1,0 +1,269 @@
+.listNotifications ul,
+.myNotifications ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 0.05rem 0.5rem;
+	        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#myListRender .list > div{
+	display: flex;
+}
+
+.listNotifications ul li,
+.myNotifications ul li {
+	position: relative;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	padding: 16px;
+	gap: 0.5rem;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	max-width: 100%;
+}
+
+.listNotifications img {
+	height: 20px;
+}
+
+.listNotifications ul li strong,
+.myNotifications ul li strong {
+	margin-right: 0.5rem;
+}
+
+.listNotifications ul li p,
+.myNotifications ul li p {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 800px;
+	vertical-align: middle;
+	line-height: 1.4;
+	flex: 1;
+	min-width: 0;
+}
+
+.listNotifications ul li.active p,
+.myNotifications ul li.active p {
+	overflow: visible;
+	text-overflow: clip;
+	white-space: wrap;
+}
+
+.listNotifications ul li:hover {
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	transform: translateY(-2px);
+}
+
+.containerList {
+	margin-top: 1rem;
+}
+
+.containerList h5 {
+	margin-bottom: 0.5rem;
+}
+
+.containerList.menu {
+	bottom: 0;
+	margin-bottom: 5rem;
+	margin-top: 3rem;
+	flex-direction: row;
+}
+
+.containerList.menu>.listNotifications>ul {
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.containerAll h3 {
+	margin-bottom: 1rem;
+}
+
+.myNotifications {
+	height: 0;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.myNotifications.active {
+	height: auto;
+	opacity: 1;
+	visibility: visible;
+	transition: all 1s ease-in;
+}
+
+#close {
+	display: none;
+}
+
+#open,
+#close {
+	padding: 0.5rem;
+	border: none;
+	margin-bottom: 1rem;
+}
+
+#open:hover,
+#close:hover {
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	background-color: #ddd;
+}
+
+#listRender .list {
+	cursor: pointer;
+}
+#listRender .list > div{
+	display: flex;
+}
+
+.records {
+	width: 100%;
+	padding: 1rem;
+	box-shadow: 0px 0px 4.3px -1.7px;
+	margin-bottom: 2rem;
+	border-radius: 12px;
+}
+
+.form-rol {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 1rem;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	margin: 0 1rem 2rem 0;
+	width: -webkit-fill-available;
+}
+
+.form-group:last-child {
+	margin-bottom: 0;
+}
+
+.form-group input,
+select {
+	border: 1px solid #ddd;
+	padding: 0.5rem;
+	border-radius: 8px;
+}
+
+.form-group label {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+input[type='textarea'] {
+	height: 5rem;
+}
+
+.btn {
+	background-color: var(--background-button);
+	color: #fff;
+	border: none;
+	border-radius: 12px;
+	padding: 1rem;
+	width: 10rem;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	margin-top: 4px;
+	display: block;
+}
+
+.input-error {
+	border-color: red !important;
+}
+
+/* 📱 RESPONSIVIDADE */
+@media (max-width: 768px) {
+
+	.containerAll h3 {
+		font-size: 1.1rem;
+		text-align: center;
+	}
+
+	.listNotifications ul li,
+	.myNotifications ul li {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 12px;
+		font-size: 0.9rem;
+	}
+
+	.listNotifications ul li p,
+	.myNotifications ul li p {
+		max-width: 100%;
+		white-space: normal;
+		-webkit-line-clamp: unset;
+	}
+
+	.records {
+		padding: 0.8rem;
+		margin-bottom: 1rem;
+	}
+
+	.form-rol {
+		flex-direction: column;
+	}
+
+	.form-group {
+		margin: 0 0 1rem 0;
+		width: 100%;
+	}
+
+	.btn {
+		width: 100%;
+		font-size: 1rem;
+		padding: 0.8rem;
+	}
+
+	#open,
+	#close {
+		width: 100%;
+		font-size: 0.95rem;
+	}
+
+	.containerList.menu {
+		margin-top: 2rem;
+	}
+
+	.listNotifications ul,
+	.myNotifications ul {
+		gap: 0.8rem;
+	}
+
+	.listNotifications img {
+		height: 18px;
+	}
+}
+
+/* 📱 Extra pequeno (celulares menores que 480px) */
+@media (max-width: 480px) {
+	.listNotifications ul li,
+	.myNotifications ul li {
+		padding: 10px;
+		font-size: 0.85rem;
+	}
+
+	.btn {
+		font-size: 0.9rem;
+		padding: 0.7rem;
+	}
+
+	.form-group label {
+		font-size: 0.85rem;
+	}
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Home Morador</title>
+		<link rel="stylesheet" href="./style.css" />
+		<link rel="stylesheet" href="../communicates/style.css" />
+		<link rel="stylesheet" href="../../../css/global.css" />
+		<link
+			rel="icon"
+			type="image/png"
+			href="../../../assets/img/smart.png"
+		/>
+	</head>
+	<body>
+		<div class="container">
+			<!--html Personalizado ATRIBUTO ROLE - quem esta logado [sindico, morador, funcionário]-->
+			<layout-sidebar role="resident"></layout-sidebar>
+
+			<main class="content">
+				<!--html personalizado o TITLE define qual será o titulo da pagina-->
+				<layout-header title="Home"></layout-header>
+
+				<!-- Listar minhas notificações -->
+				<div class="listOfAnnouncements">
+					<div class="containerList">
+						<div class="listNotifications">
+							<ul id="listRender"></ul>
+						</div>
+					</div>
+				</div>
+
+				<h3>Minhas reservas</h3>
+				<div class="reservations">
+					<div class="card">
+						<img src="../../../assets/icon/calendar.svg" alt="" />
+						<div class="info">
+							<h4>Salão de Festas</h4>
+							<span>Data: 20/09/2024</span>
+							<span>Horário: 18h às 23h</span>
+						</div>
+						<a class="chevronRight" href="#">
+							<img
+								src="../../../assets/icon/chevron-right.svg"
+								alt=""
+							/>
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="actions">
+						<button class="newReservation">
+							<img src="../../../assets/icon/edit.svg" alt="" />
+							Fazer reserva
+						</button>
+						<button class="newOccurrence">
+							<img src="../../../assets/icon/loader.svg" alt="" />
+							Registrar ocorrência
+						</button>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<layout-bottom-nav role="resident"></layout-bottom-nav>
+		<script type="module" src="./index.js"></script>
+		<script
+			type="module"
+			src="../../../components/layoutNavbar/index.js"
+		></script>
+		<script
+			type="module"
+			src="../../../components/layoutNavbar/layoutBottomNav.js"
+		></script>
+		<script
+			type="module"
+			src="../../../components/layoutHeader/layoutHeader.js"
+		></script>
+	</body>
+</html>

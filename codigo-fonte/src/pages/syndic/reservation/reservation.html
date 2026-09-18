@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Reservas</title>
+		<link rel="stylesheet" href="./style.css" />
+		<link rel="stylesheet" href="../../../css/global.css" />
+		<link
+			rel="icon"
+			type="image/png"
+			href="../../../assets/img/smart.png"
+		/>
+		<link rel="stylesheet" href="../../../js/modal/style.css">
+	</head>
+	<body>
+		<div class="container">
+			<!--html Personalizado ATRIBUTO ROLE - quem esta logado [syndic, resident, employee]-->
+			<layout-sidebar role="syndic"></layout-sidebar>
+
+			<main class="content">
+				<!--html personalizado o TITLE define qual será o titulo da pagina-->
+				<layout-header title="Reservas de áreas comuns"></layout-header>
+
+				<div class="cardContainer">
+					<div class="card">
+						<img src="../../../assets/icon/drink.svg" alt="" />
+						<strong>Salão de festas</strong>
+						<button class="btn openModalBtn" data-target="salao">
+							Fazer reserva
+						</button>
+					</div>
+					<div class="card">
+						<img src="../../../assets/icon/weber.svg" alt="" />
+						<strong>Churrasqueira</strong>
+						<button class="btn openModalBtn" data-target="gourmet">
+							Fazer reserva
+						</button>
+					</div>
+					<div class="card">
+						<img src="../../../assets/icon/basketball.svg" alt="" />
+						<strong>Quadra esportiva</strong>
+						<button class="btn openModalBtn" data-target="quadra">
+							Fazer reserva
+						</button>
+					</div>
+				</div>
+
+				<div class="reservation">
+					<div class="titlePage">
+						<h3>Minhas reservas</h3>
+						<button class="btn openModalBtn" data-target="salao">
+							Nova reserva
+						</button>
+					</div>
+
+					<div id="listReservation" class="list"></div>
+				</div>
+
+				<div class="modalOverlay">
+					<div class="modal">
+						<div class="calendar">
+							<div class="calendar-header">
+								<select id="monthSelect"></select>
+							</div>
+
+							<div class="calendar-grid">
+								<div class="calendar-weekdays">
+									<div>Dom</div>
+									<div>Seg</div>
+									<div>Ter</div>
+									<div>Qua</div>
+									<div>Qui</div>
+									<div>Sex</div>
+									<div>Sáb</div>
+								</div>
+
+								<div
+									id="calendarDays"
+									class="calendar-days"
+								></div>
+							</div>
+						</div>
+
+						<form
+							class="saveReservation"
+							onsubmit="recordReservation()"
+						>
+							<div class="form-group">
+								<h3>Reservas</h3>
+
+								<div class="form-group">
+									<label for="selectSpace">Área:</label>
+									<select name="space" id="selectSpace">
+										<option value="">
+											Selecione um espaço
+										</option>
+										<option value="Salão de festas">
+											Salão de festas
+										</option>
+										<option value="Espaço gourmet">
+											Espaço gourmet
+										</option>
+										<option value="Quadra">Quadra</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group">
+									<label for="dateInit">Data início:</label>
+									<input type="date" id="dateInit" />
+								</div>
+								<div class="form-group">
+									<label for="startTime"
+										>Hora de início:</label
+									>
+									<input
+										type="text"
+										placeholder="Padrão 10:00 ou insira novo"
+										id="startTime"
+									/>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group">
+									<label for="dateFinished"
+										>Data final:</label
+									>
+									<input type="date" id="dateFinished" />
+								</div>
+								<div class="form-group">
+									<label for="endTime"
+										>Hora de término:</label
+									>
+									<input
+										type="text"
+										placeholder="Padrão 22:00 ou insira novo"
+										id="endTime"
+									/>
+								</div>
+							</div>
+
+							<div class="form-buttons">
+								<button type="button" id="btnClose">
+									Cancelar
+								</button>
+								<button type="button" class="btnSave">
+									Reservar
+								</button>
+							</div>
+
+							<div class="info">
+								<input
+									type="radio"
+									id="statusPending"
+									name="pending"
+									value="Pending"
+									checked
+								/>
+								<label for="statusPending">Pendente</label>
+								<input
+									type="radio"
+									id="statusApproved"
+									name="approved"
+									value="approved"
+									checked
+								/>
+								<label for="statusApproved">Aprovado</label>
+								<input
+									type="radio"
+									id="statusReject"
+									name="reject"
+									value="reject"
+									checked
+								/>
+								<label for="statusReject">Rejeitado</label>
+							</div>
+						</form>
+					</div>
+				</div>
+			</main>
+
+			<div class="confirm-overlay" id="confirmOverlay">
+				<div class="confirm-box">
+					<p id="confirmMessage">Tem certeza que deseja excluir?</p>
+					<button id="confirmNo">Cancelar</button>
+					<button id="confirmYes">Sim</button>
+				</div>
+			</div>
+		</div>
+
+		<layout-bottom-nav class="bottom-nav" role="syndic"></layout-bottom-nav>
+		<script type="module" src="./js/index.js"></script>
+		<script
+			type="module"
+			src="../../../components/layoutNavbar/index.js"
+		></script>
+		<script
+			type="module"
+			src="../../../components/layoutNavbar/layoutBottomNav.js"
+		></script>
+		<script
+			type="module"
+			src="../../../components/layoutHeader/layoutHeader.js"
+		></script>
+	</body>
+</html>

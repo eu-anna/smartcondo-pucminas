@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Ocorrência</title>
+	<link rel="stylesheet" href="./style.css" />
+	<link rel="stylesheet" href="../communicates/style.css" />
+	<link rel="stylesheet" href="../../../css/global.css" />
+	<link rel="icon" type="image/png" href="../../../assets/img/smart.png" />
+	<link rel="stylesheet" href="../../../css/resident-css/resident-occurrence.css">
+</head>
+
+<body>
+	<div class="container">
+		<!--html Personalizado ATRIBUTO ROLE - quem esta logado [sindico, morador, funcionário]-->
+		<layout-sidebar role="resident"></layout-sidebar>
+
+		<main class="content">
+			<!--html personalizado o TITLE define qual será o titulo da pagina-->
+			<layout-header title="Ocorrência"></layout-header>
+			<!-- FORMULÁRIO DE OCORRÊNCIA -->
+			<section class="report-section">
+				<h3>Registrar nova ocorrência</h3>
+				<form id="formOcorrencia" class="report-form">
+					<div class="form-group">
+						<div>
+							<label for="titulo">Título</label>
+							<input type="text" id="titulo" placeholder="Insira um título" required />
+						</div>
+						<div>
+							<label for="categoria">Categoria</label>
+							<select id="categoria" required>
+								<option value="">Selecione uma categoria</option>
+								<option>Manutenção</option>
+								<option>Limpeza e Conservação</option>
+								<option>Segurança</option>
+								<option>Convivência e Reclamações</option>
+								<option>Sugestões e Melhorias</option>
+								<option>Administrativo / Financeiro</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group full">
+						<label for="descricao">Descrição</label>
+						<textarea id="descricao" rows="4" placeholder="Descreva o problema..." required></textarea>
+					</div>
+					<button type="submit" class="btn-enviar">Enviar ocorrência</button>
+				</form>
+			</section>
+
+			<!-- LISTAGEM DE OCORRÊNCIAS -->
+			<section class="my-reports">
+				<h3>Minhas ocorrências</h3>
+				<div id="listaOcorrencias" class="reports-grid"></div>
+				<div id="paginacaoOcorrencias" class="paginacao"></div>
+			</section>	
+
+		</main>
+	</div>
+
+	<layout-bottom-nav role="resident"></layout-bottom-nav>
+	<script type="module" src="./index.js"></script>
+	<script type="module" src="../../../components/layoutNavbar/index.js"></script>
+	<script type="module" src="../../../components/layoutNavbar/layoutBottomNav.js"></script>
+	<script type="module" src="../../../components/layoutHeader/layoutHeader.js"></script>
+	<script src="../../../js/dashboard-resident-occurrence.js"></script>	
+</body>
+
+</html>

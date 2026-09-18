@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCondo - Moradores</title>
+    <link rel="stylesheet" href="../../../components/layoutNavbar/layoutNavbar.css">
+    <link rel="stylesheet" href="../../../css/sindico-css/dashboard-sindico-morador.css">
+	<link rel="icon" href="../../../assets/img/logo_img.png" type="image/png" />
+
+    <script src="../../../js/dashboard-sindico-morador.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="../../../assets/img/smart.png" alt="SmartCondo Logo">
+                <h2>SmartCondo</h2>
+            </div>
+      <nav class="menu">
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico.html">🏠 Visão Geral</a>
+        <a href="#" class="active">👥 Moradores</a>
+        <a href="../../../pages/syndic/employee/employee.html">👨‍💼 Funcionários</a>
+        <a href="../../../pages/syndic/communicates/communicates.html">✉️ Comunicados</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-occurrence.html">📋 Ocorrências</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-ordem-servico.html">🛠️ Ordem de serviços</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-gestao.html">📅 Gestão de reservas</a>
+        <a href="../../../pages/syndic/reservation/reservation.html">📅 Reservas</a>
+        <a href="#" id="btnLogout">🚪 Sair</a>
+      </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-box">
+                    <input type="text" id="campoPesquisa" placeholder="Pesquisar por nome ou unidade..." />
+                    <button class="search-btn" id="btnPesquisar">🔍</button>
+                </div>
+
+                <div class="user-info">
+                    <span id="usuarioLogado"></span>
+                    <img src="../../../assets/icon/profile.svg" alt="Usuário">
+                </div>
+            </header>
+
+            <section class="content">
+                <h1>Moradores</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Unidade</th>
+                            <th>Tipo</th>
+                            <th>Status financeiro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaMoradores">
+                    </tbody>
+                </table>
+                <div id="paginacao"></div>
+                <button class="add-btn">+ Adicionar morador</button>
+
+                <div class="modal-overlay" id="modalOverlay">
+                    <div class="modal">
+                        <button class="close-button" id="closeModal">×</button>
+
+                        <h2>Cadastrar Morador</h2>
+
+                        <div class="steps">
+                            <div class="step active" id="step1-indicator">
+                                <span>1</span> Informações pessoais
+                            </div>
+                            <div class="line"></div>
+                            <div class="step" id="step2-indicator">
+                                <span>2</span> Dados da unidade
+                            </div>
+                        </div>
+
+                        <form id="formCadastrarMorador">
+                            <div id="step1" class="form-step active">
+                                <h3>Dados pessoais</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">Nome:</label>
+                                        <input type="text" placeholder="Digite o nome" id="firstName">
+                                        <span class="error-message" id="error-firstName"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Sobrenome:</label>
+                                        <input type="text" placeholder="Digite o sobrenome" id="lastName">
+                                        <span class="error-message" id="error-lastName"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="cpf">CPF:</label>
+                                        <input type="text" placeholder="000.000.000-00" id="cpf">
+                                        <span class="error-message" id="error-cpf"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Data de nascimento:</label>
+                                        <input type="date" id="date">
+                                        <span class="error-message" id="error-date"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">E-mail:</label>
+                                        <input type="email" placeholder="exemplo@email.com" id="email">
+                                        <span class="error-message" id="error-email"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Telefone:</label>
+                                        <input type="text" placeholder="(xx) xxxxx-xxxx" id="phone">
+                                        <span class="error-message" id="error-phone"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-buttons">
+                                    <button type="button" class="btn-next" id="nextStep">Próximo</button>
+                                </div>
+                            </div>
+
+                            <div id="step2" class="form-step">
+                                <h3>Dados do imóvel</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="unit">Unidade:</label>
+                                        <input type="text" placeholder="Ex: Ap. 101" id="unit">
+                                        <span class="error-message" id="error-unit"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vacancies">Vagas de garagem:</label>
+                                        <input type="text" placeholder="Ex: 01, 02" id="vacancies">
+                                        <span class="error-message" id="error-vacancies"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Vínculo com o imóvel:</label>
+                                        <div class="radio-group">
+                                            <label><input type="radio" name="bond" value="Proprietário" checked>
+                                                Proprietário</label>
+                                            <label><input type="radio" name="bond" value="Inquilino"> Inquilino</label>
+                                        </div>
+                                        <span class="error-message" id="error-bond"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-buttons">
+                                    <button type="button" class="btn-back" id="prevStep">Voltar</button>
+                                    <button type="button" class="btn-next green" id="btnCadastrar">Cadastrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="modal-overlay" id="modalFeedback">
+                    <div class="modal feedback">
+                        <div class="feedback-content">
+                            <div class="feedback-icon" id="feedbackIcon"></div>
+                            <p id="feedbackMessage"></p>
+                            <button id="closeFeedback" class="btn-close">Fechar janela</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="modalEditarMorador">
+        <div class="modal">
+            <button class="close-button" id="closeEditModal">×</button>
+            <h2>Editar Morador</h2>
+            <form id="formEditarMorador">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editFirstName">Nome:</label>
+                        <input type="text" id="editFirstName">
+                        <span class="error-message" id="error-editFirstName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="editLastName">Sobrenome:</label>
+                        <input type="text" id="editLastName">
+                        <span class="error-message" id="error-editLastName"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editCpf">CPF:</label>
+                        <input type="text" id="editCpf">
+                        <span class="error-message" id="error-editCpf"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDate">Data de nascimento:</label>
+                        <input type="date" id="editDate">
+                        <span class="error-message" id="error-editDate"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editEmail">E-mail:</label>
+                        <input type="email" id="editEmail">
+                        <span class="error-message" id="error-editEmail"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPhone">Telefone:</label>
+                        <input type="text" id="editPhone">
+                        <span class="error-message" id="error-editPhone"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editUnit">Unidade:</label>
+                        <input type="text" id="editUnit">
+                        <span class="error-message" id="error-editUnit"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="editBond">Vínculo com o imóvel:</label>
+                        <select id="editBond">
+                            <option value="Proprietário">Proprietário</option>
+                            <option value="Inquilino">Inquilino</option>
+                        </select>
+                        <span class="error-message" id="error-editBond"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editVacancies">Vagas de garagem:</label>
+                        <input type="text" id="editVacancies">
+                        <span class="error-message" id="error-editVacancies"></span>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" id="btnFecharEditar">Cancelar</button>
+                    <button type="submit" id="btnSalvarEditar">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+       <!-- Navbar Mobile -->
+  <nav class="bottom-nav">
+    <a href="../dashboard/dashboard-sindico.html">
+      <span>🏠</span>
+      <p>Visão Geral</p>
+    </a>
+
+    <a href="#" class="active">
+      <span>👥</span>
+      <p>Moradores</p>
+    </a>
+
+    <a href="../../../pages/syndic/employee/employee.html">
+      <span>👨‍💼</span>
+      <p>Funcionários</p>
+    </a>
+
+	<a href="../../../pages/syndic/communicates/communicates.html">
+		<span>✉️</span>
+		<p> Comunicados</p>
+	</a>
+
+    <button class="more-btn" id="openMore">
+      <span>➕</span>
+      <p>Mais</p>
+    </button>
+  </nav>
+
+  <!-- Menu Flutuante -->
+
+  <div class="more-menu" id="moreMenu">
+	<a href="../dashboard/dashboard-sindico-occurrence.html">📋 Ocorrências</a>
+    <a href="../dashboard/dashboard-sindico-ordem-servico.html">🛠️ Ordem de serviços</a>
+    <a href="../dashboard/dashboard-sindico-gestao.html">📅 Gestão de reservas</a>
+    <a href="../reservation/reservation.html">📅 Reservas</a>
+    <a href="#" id="btnLogout">🚪 Sair</a>
+  </div>
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modalOverlay = document.getElementById('modalOverlay');
+        const addBtn = document.querySelector('.add-btn');
+        const closeModal = document.getElementById('closeModal');
+        const nextStep = document.getElementById('nextStep');
+        const prevStep = document.getElementById('prevStep');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step1Indicator = document.getElementById('step1-indicator');
+        const step2Indicator = document.getElementById('step2-indicator');
+
+        function resetSteps() {
+            step2.classList.remove('active');
+            step1.classList.add('active');
+            step2Indicator.classList.remove('active');
+            step1Indicator.classList.add('active');
+        }
+
+
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+                modalOverlay.classList.add('active');
+                resetSteps();
+            });
+        }
+
+
+        if (closeModal) {
+            closeModal.addEventListener('click', () => {
+                modalOverlay.classList.remove('active');
+                resetSteps();
+            });
+        }
+
+
+        if (nextStep) {
+            nextStep.addEventListener('click', () => {
+                step1.classList.remove('active');
+                step2.classList.add('active');
+                step1Indicator.classList.remove('active');
+                step2Indicator.classList.add('active');
+            });
+        }
+
+
+        if (prevStep) {
+            prevStep.addEventListener('click', () => {
+                step2.classList.remove('active');
+                step1.classList.add('active');
+                step2Indicator.classList.remove('active');
+                step1Indicator.classList.add('active');
+            });
+        }
+
+
+        if (modalOverlay) {
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    modalOverlay.classList.remove('active');
+                    resetSteps();
+                }
+            });
+        }
+
+
+        const step2Form = document.getElementById('step2');
+        if (step2Form) {
+            step2Form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                modalOverlay.classList.remove('active');
+                resetSteps();
+            });
+        }
+    });
+
+</script>
+<script type="module">
+    import { logout } from "../../login/auth/logout.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Nome do usuário no topo
+        const usuarioSpan = document.getElementById("usuarioLogado");
+        const usuarioLogado = JSON.parse(sessionStorage.getItem("smartcondo_loggedInUser"));
+
+        console.log(usuarioLogado);
+
+        if (usuarioLogado && usuarioLogado.name) {
+            const cargo =
+                usuarioLogado.role === "syndic"
+                    ? "Síndico"
+                    : usuarioLogado.role === "resident"
+                        ? "Morador"
+                        : usuarioLogado.role === "employee"
+                            ? "Funcionário"
+                            : "";
+            usuarioSpan.textContent = `${usuarioLogado.name}, ${cargo}`;
+        } else {
+            usuarioSpan.textContent = "Usuário";
+        }
+
+        // Logout da sidebar (primeiro link com id="btnLogout")
+        const btnLogoutSidebar = document.getElementById("btnLogout");
+        if (btnLogoutSidebar) {
+            btnLogoutSidebar.addEventListener("click", (e) => {
+                e.preventDefault();
+                logout();
+            });
+        }
+
+        // Logout do menu flutuante (último link dentro de .more-menu)
+        const logoutMenu = document.querySelector(".more-menu a:last-child");
+        if (logoutMenu) {
+            logoutMenu.addEventListener("click", (e) => {
+                e.preventDefault();
+                logout();
+            });
+        }
+    });
+</script>
+<script type="module" src="../communicates/js/index.js"></script>
+
+
+
+</html>

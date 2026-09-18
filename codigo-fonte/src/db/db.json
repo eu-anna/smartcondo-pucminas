@@ -1,0 +1,169 @@
+{
+	"smartcondo_users": [
+		{
+			"id": "ca0c152895be4be38eb507f21f510539",
+			"name": "Lidiane Aparecida",
+			"password": "12345",
+			"cpf": "10042833000",
+			"dateOfBirth": "1990-01-01",
+			"email": "lidianer@gmail.com",
+			"tel": "11999999999",
+			"unit": "Ap 101",
+			"dateRegistered": "2023-01-15T10:00:00Z",
+			"role": "syndic",
+			"firstLogin": false,
+			"vacancies": "01,02",
+			"bond": "Proprietário"
+		}
+	],
+
+	"smartcondo_employees": [
+		{
+			"id": "1f99305810504fca8d57588ec576d2dd",
+			"name": "João Paulo Silva",
+			"cpf": "56789753079",
+			"startTime": "07:00",
+			"endTime": "19:00",
+			"position": "Porteiro",
+			"contact": "31994116633",
+			"email": "lidianer@gmail.com",
+			"password": "12345",
+			"role": "employee",
+			"firstLogin": false
+		},
+		{
+			"id": "cf79d8c27e4a4afb9fe685f0384bc0c4",
+			"name": "João Pereira Almeida",
+			"cpf": "57605519575",
+			"startTime": "07:00",
+			"endTime": "19:00",
+			"position": "Eletricista",
+			"contact": "31989745679",
+			"email": "joaoalmeida83@gmail.com",
+			"password": "12345",
+			"role": "employee",
+			"firstLogin": true
+		},
+		{
+			"id": "30be3081eedb4176b1605ddbe19212f0",
+			"name": "Nitiane Souza Bitencourt",
+			"cpf": "46401708077",
+			"startTime": "07:00",
+			"endTime": "19:00",
+			"position": "Asg",
+			"contact": "31965789480",
+			"email": "teste2@gmail.com",
+			"password": "",
+			"role": "employee",
+			"firstLogin": true
+		}
+	],
+
+	"occurrences": [
+		{
+			"id": 1,
+			"title": "Reclamação de barulho",
+			"authorId": 1,
+			"status": "pending",
+			"description": "O vizinho do apartamento 203 está fazendo muito barulho à noite.",
+			"date": "2024-07-10T22:00:00Z"
+		}
+	],
+
+	"smartcondo_reservations": [
+		{
+			"id": "30be3081eedb4176b1605ddbe19123f0",
+			"space": "Salão de festas",
+			"authorId": "ca0c152895bedfg38eb507f21f510539",
+			"authorName": "Marcos de Souza",
+			"status": "pending",
+			"dateRegistered": "Sat Oct 17 2025",
+			"dateInit": "2025-11-20",
+			"dateFinished": "2025-11-21",
+			"startTime": "10:00",
+			"endTime": "20:00"
+		},
+		{
+			"id": "30be3081eedb4176b1605ddbe19123f0",
+			"space": "Salão de festas",
+			"authorId": "ca0c152895be4be38eb507asrf510539",
+			"authorName": "Vinicius Oliveira",
+			"status": "approved",
+			"dateRegistered": "Sat Oct 18 2025",
+			"dateInit": "2025-11-25",
+			"dateFinished": "2025-11-26",
+			"startTime": "10:00",
+			"endTime": "20:00"
+		},
+		{
+			"id": "30be3081eedb4176b1605ddbe19123f0",
+			"space": "Salão de festas",
+			"authorId": "ca0c152895be4be38eb507f21f510539",
+			"authorName": "Lidiane Aparecida",
+			"status": "reject",
+			"dateRegistered": "Sat Oct 18 2025",
+			"dateInit": "2025-11-30",
+			"dateFinished": "2025-11-30",
+			"startTime": "10:00",
+			"endTime": "20:00"
+		}
+	],
+
+	"smartcondo_notifications": [
+		{
+			"id": "ca0c15289a6h34be38eb507f21f510539",
+			"title": "Edital de convocação Assembleia geral",
+			"text": "Estao convidados a participar desta assembleia geral ordinária para discutir a seguinte pauta: 1- aumenta da taxa, 2- Revitalização do jardim ",
+			"category": "assembleia",
+			"authorId": "ca0c152895be4be38eb507f21f510539",
+			"date": "2025-10-10T22:00:00Z",
+			"isNewNotification": true,
+			"targetName": "Todos",
+			"targetIdOrAll": "all"
+		},
+		{
+			"id": "ca0c152895be4be38eb507f8a52h0539",
+			"title": "Ocorrência#01",
+			"text": "Vazamento na vaga 15 proximo ao elevador no G3",
+			"category": "ocorrencia",
+			"authorId": "ca0c152895bedfg38eb507f21f510539",
+			"targetName": "Marcos de Souza",
+			"date": "2025-10-18T22:00:00Z",
+			"isNewNotification": true,
+			"targetIdOrAll": "ca0c152895be4be38eb507f21f510539"
+		},
+		{
+			"id": "ca0c152895be4be38eb507f21f59d85f2",
+			"title": "2º via de chave",
+			"text": "Sr Marcos, a segunda via da sua chave encontra-se disponível na portaria, o valor da mesma será cobrado junto a próxima taxa de condomínio!",
+			"category": "mensagem",
+			"authorId": "ca0c152895be4be38eb507f21f510539",
+			"date": "2025-10-15T22:00:00Z",
+			"isNewNotification": true,
+			"targetName": "Marcos de Souza",
+			"targetIdOrAll": "ca0c152895bedfg38eb507f21f510539"
+		},
+		{
+			"id": "ca0c152895be4be38eb507f8d9a63h539",
+			"title": "Edital de convocação de assembléia geral",
+			"text": "Estao convidados a participar desta assembleia geral ordinária para discutir a seguinte pauta: 1-aumenta da taxa, 2-Revitalizacao do jardim ",
+			"category": "assembleia",
+			"authorId": "ca0c152895be4be38eb507f21f510539",
+			"date": "2025-10-10T22:00:00Z",
+			"isNewNotification": true,
+			"targetName": "Todos",
+			"targetIdOrAll": "all"
+		},
+		{
+			"id": "ca0c158d9f63be4be38eb507f21f510539",
+			"title": "Resposta - Ocorrência#01",
+			"text": "vazamento na garagem foi resolvida em 20/10",
+			"category": "ocorrencia",
+			"authorId": "ca0c152895be4be38eb507f21f510539",
+			"date": "2025-10-18T22:00:00Z",
+			"isNewNotification": false,
+			"targetName": "Todos",
+			"targetIdOrAll": "all"
+		}
+	]
+}

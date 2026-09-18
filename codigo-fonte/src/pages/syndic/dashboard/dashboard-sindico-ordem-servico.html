@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartCondo - Ordem de Serviço</title>
+  <link rel="stylesheet" href="../../../components/layoutNavbar/layoutNavbar.css">
+  <link rel="stylesheet" href="../../../css/sindico-css/dashboard-sindico-ordem-servico.css">
+  <link rel="icon" href="../../../assets/img/logo_img.png" type="image/png" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- === SIDEBAR === -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="../../../assets/img/smart.png" alt="SmartCondo Logo">
+        <h2>SmartCondo</h2>
+      </div>
+      <nav class="menu">
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico.html">🏠 Visão Geral</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-morador.html">👥 Moradores</a>
+        <a href="../../../pages/syndic/employee/employee.html">👨‍💼 Funcionários</a>
+        <a href="../../../pages/syndic/communicates/communicates.html">✉️ Comunicados</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-occurrence.html">📋 Ocorrências</a>
+        <a href="#" class="active">🛠️ Ordem de serviços</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-gestao.html">📅 Gestão de reservas</a>
+        <a href="../../../pages/syndic/reservation/reservation.html">📅 Reservas</a>
+        <a href="#" id="btnLogout">🚪 Sair</a>
+      </nav>
+    </aside>
+
+    <!-- === CONTEÚDO PRINCIPAL === -->
+    <main class="main-content">
+
+      <header class="topbar">
+        <div class="search-box">
+          <input type="text" id="campoPesquisa" placeholder="Pesquisar por título ou categoria..." />
+          <button class="search-btn" id="btnPesquisar">🔍</button>
+        </div>
+
+        <div class="user-info">
+          <span id="usuarioLogado"></span>
+          <img src="../../../assets/icon/profile.svg" alt="Usuário">
+        </div>
+      </header>
+
+      <h1>Ordens de Serviço</h1>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>O.S.</th>
+              <th>Título</th>
+              <th>Categoria</th>
+              <th>Responsável</th>
+              <th>Status</th>
+              <th>Prioridade</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaOrdens">
+            <!-- As O.S. serão carregadas aqui -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="actions">
+        <button class="add-btn">Abrir ordem de serviço</button>
+      </div>
+    </main>
+
+    <!-- === MODAL NOVA ORDEM DE SERVIÇO === -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-content">
+        <h2>Nova ordem de serviço</h2>
+        <form id="formOrdemServico">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numeroOS">Número da O.S:</label>
+              <input type="text" id="numeroOS" readonly>
+            </div>
+            <div class="form-group">
+              <label for="prioridade">Prioridade:</label>
+              <select id="prioridade" required>
+                <option value="" disabled selected>Selecione a prioridade</option>
+                <option value="Baixa">Baixa</option>
+                <option value="Média">Média</option>
+                <option value="Alta">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo">
+          </div>
+
+          <div class="form-group">
+            <label for="ocorrencia">Ocorrência Vinculada (se aplicável):</label>
+            <input type="text" id="ocorrencia">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dataSugerida">Data sugerida:</label>
+              <input type="date" id="dataSugerida">
+            </div>
+
+            <div class="form-group">
+              <label for="categoria">Categoria:</label>
+              <select id="categoria">
+                <option value="">Selecione uma categoria</option>
+                <option value="Elétrica">Elétrica</option>
+                <option value="Hidráulica">Hidráulica</option>
+                <option value="Limpeza">Limpeza</option>
+                <option value="Pintura">Pintura</option>
+                <option value="Manutenção">Manutenção</option>
+                <option value="Jardinagem">Jardinagem</option>
+                <option value="Segurança">Segurança</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="responsavel">Responsável pela execução:</label>
+              <select id="responsavel">
+                <option value="">Carregando funcionários...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="local">Local:</label>
+              <input type="text" id="local">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" rows="4"></textarea>
+          </div>
+
+          <div class="modal-buttons">
+            <button type="button" class="cancel-btn" id="cancelarModal">Cancelar</button>
+            <button type="submit" class="create-btn">Criar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Navbar Mobile -->
+    <nav class="bottom-nav">
+      <a href="../dashboard/dashboard-sindico.html">
+        <span>🏠</span>
+        <p>Visão Geral</p>
+      </a>
+
+      <a href="../dashboard/dashboard-sindico-morador.html">
+        <span>👥</span>
+        <p>Moradores</p>
+      </a>
+
+      <a href="../../../pages/syndic/employee/employee.html">
+        <span>👨‍💼</span>
+        <p>Funcionários</p>
+      </a>
+
+      <a href="../../../pages/syndic/communicates/communicates.html">
+        <span>✉️</span>
+        <p> Comunicados</p>
+      </a>
+
+      <button class="more-btn" id="openMore">
+        <span>➕</span>
+        <p>Mais</p>
+      </button>
+    </nav>
+
+    <!-- Menu Flutuante -->
+
+    <div class="more-menu" id="moreMenu">
+      <a href="../dashboard/dashboard-sindico-occurrence.html">📋 Ocorrências</a>
+      <a href="#" class="active">🛠️ Ordem de serviços</a>
+      <a href="../dashboard/dashboard-sindico-gestao.html">📅 Gestão de reservas</a>
+      <a href="../reservation/reservation.html">📅 Reservas</a>
+      <a href="#" id="btnLogout">🚪 Sair</a>
+    </div>
+    <!-- === MODAL VISUALIZAR / EDITAR ORDEM DE SERVIÇO === -->
+    <div class="modal-overlay" id="modalVerOS">
+      <div class="modal-content">
+        <h2>Ordem de serviço</h2>
+        <form id="formVerOS">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="verNumero">Número da O.S:</label>
+              <input type="text" id="verNumero" readonly>
+            </div>
+            <div class="form-group">
+              <label for="verPrioridade">Prioridade:</label>
+              <select id="verPrioridade" disabled>
+                <option value="Baixa">Baixa</option>
+                <option value="Média">Média</option>
+                <option value="Alta">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="verTitulo">Título:</label>
+            <input type="text" id="verTitulo" readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="verOcorrencia">Ocorrência Vinculada (se aplicável):</label>
+            <input type="text" id="verOcorrencia" readonly>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="verData">Data sugerida:</label>
+              <input type="date" id="verData" readonly>
+            </div>
+            <div class="form-group">
+              <label for="verCategoria">Categoria:</label>
+              <input type="text" id="verCategoria" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="verResponsavel">Responsável pela execução:</label>
+              <input type="text" id="verResponsavel" readonly>
+            </div>
+            <div class="form-group">
+              <label for="verLocal">Local:</label>
+              <input type="text" id="verLocal" readonly>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="verDescricao">Descrição:</label>
+            <textarea id="verDescricao" rows="4" readonly></textarea>
+          </div>
+
+          <div class="modal-buttons">
+            <button type="button" id="btnAlterar" class="edit-btn">Alterar</button>
+            <button type="button" id="btnCancelarVer" class="cancel-btn">Voltar</button>
+            <button type="button" id="btnSalvarAlteracoes" class="done-btn" style="display: none;">Salvar</button>
+            <button type="button" id="btnConcluir" class="complete-btn">Concluir</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+
+    <script type="module" src="../../../js/dashboard-syndic-os.js"></script>
+    <script>
+
+      const btn = document.getElementById('openMore');
+      const menu = document.getElementById('moreMenu');
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('show');
+      });
+
+      document.addEventListener('click', () => {
+        menu.classList.remove('show');
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const usuarioSpan = document.getElementById("usuarioLogado");
+        const usuarioLogado = JSON.parse(sessionStorage.getItem("smartcondo_loggedInUser"));
+
+        if (usuarioLogado && usuarioLogado.name) {
+
+          const cargo =
+            usuarioLogado.role === "syndic"
+              ? "Síndico"
+              : usuarioLogado.role === "resident"
+                ? "Morador"
+                : usuarioLogado.role === "employee"
+                  ? "Funcionário"
+                  : "";
+
+          usuarioSpan.textContent = `${usuarioLogado.name}, ${cargo}`;
+        } else {
+          usuarioSpan.textContent = "Usuário";
+        }
+      });
+
+    </script>
+    <script type="module" src="../communicates/js/index.js"></script>
+</body>
+
+</html>

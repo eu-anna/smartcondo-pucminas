@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCondo - Dashboard</title>
+
+  <link rel="stylesheet" href="../../../css/sindico-css/dashboard-sindico.css">
+  <link rel="stylesheet" href="../../../components/layoutNavbar/layoutNavbar.css">
+  <link rel="icon" href="../../../assets/img/logo_img.png" type="image/png" />
+
+</head>
+
+<body>
+  <div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="../../../assets/img/smart.png" alt="SmartCondo Logo">
+        <h2>SmartCondo</h2>
+      </div>
+
+      <nav class="menu">
+        <a href="#" class="active">🏠 Visão Geral</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-morador.html">👥 Moradores</a>
+        <a href="../../../pages/syndic/employee/employee.html">👨‍💼 Funcionários</a>
+        <a href="../../../pages/syndic/communicates/communicates.html">✉️ Comunicados</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-occurrence.html">📋 Ocorrências</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-ordem-servico.html">🛠️ Ordem de serviços</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-gestao.html">📅 Gestão de reservas</a>
+        <a href="../../../pages/syndic/reservation/reservation.html">📅 Reservas</a>
+        <a href="#" id="btnLogout">🚪 Sair</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <header class="topbar">
+        <div class="search-box">         
+        </div>
+
+        <div class="user-info">
+          <span id="usuarioLogado"></span>
+          <img src="../../../assets/icon/profile.svg" alt="Usuário">
+        </div>
+      </header>
+
+
+      <section class="overview">
+        <h1>Visão Geral</h1>
+
+        <div class="cards">
+          <div class="card">
+            <span>👤</span>
+            <p>Moradores cadastrados</p>
+            <h2 id="cardMoradores">0</h2>
+          </div>
+
+          <div class="card">
+            <span>👨‍💼</span>
+            <p>Funcionários Ativos</p>
+            <h2 id="cardFuncionarios">0</h2>
+          </div>
+
+          <div class="card">
+            <span>💬</span>
+            <p>Ocorrências Pendentes</p>
+            <h2 id="cardSolicitacoes">0</h2>
+          </div>
+
+          <div class="card">
+            <span>⏰</span>
+            <p>Reservas Pendentes</p>
+            <h2 id="cardReservas">0</h2>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="bottom-content">
+
+        <!-- COMUNICADOS -->
+        <div class="comunicados">
+          <h3>Ocorrências Recentes</h3>
+          <ul id="listaComunicados">
+            <!-- preenchido JS -->
+          </ul>
+          <a href="dashboard-sindico-occurrence.html">Ver todos os comunicados</a>
+        </div>
+
+        <!-- RESERVAS RECENTES -->
+        <div class="comunicados">
+          <h3>Reservas recentes</h3>
+          <ul id="listaReservasRecentes">
+            <!-- preenchido JS -->
+          </ul>
+          <a href="dashboard-sindico-gestao.html">Ver todas as reservas</a>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Navbar Mobile -->
+  <nav class="bottom-nav">
+    <a href="../dashboard/dashboard-sindico.html" class="active">
+      <span>🏠</span>
+      <p>Visão Geral</p>
+    </a>
+
+    <a href="../dashboard/dashboard-sindico-morador.html">
+      <span>👥</span>
+      <p>Moradores</p>
+    </a>
+
+    <a href="../../../pages/syndic/employee/employee.html">
+      <span>👨‍💼</span>
+      <p>Funcionários</p>
+    </a>
+
+    <a href="../../../pages/syndic/communicates/communicates.html">
+      <span>✉️</span>
+      <p> Ocorrências</p>
+    </a>
+
+    <button class="more-btn" id="openMore">
+      <span>➕</span>
+      <p>Mais</p>
+    </button>
+  </nav>
+
+  <!-- Menu Flutuante -->
+
+  <div class="more-menu" id="moreMenu">
+    <a href="../dashboard/dashboard-sindico-occurrence.html">📋 Ocorrências</a>
+    <a href="../dashboard/dashboard-sindico-ordem-servico.html">🛠️ Ordem de serviços</a>
+    <a href="../dashboard/dashboard-sindico-gestao.html">📅 Gestão de reservas</a>
+    <a href="../reservation/reservation.html">📅 Reservas</a>
+    <a href="#" id="btnLogout">🚪 Sair</a>
+  </div>
+
+  <!-- SCRIPT PRINCIPAL -->
+
+  <script type="module" src="../../../js/dashboard-syndic-overview.js"></script>
+  <script type="module" src="../communicates/js/index.js"></script>
+
+<script type="module">
+    import { logout } from "../../login/auth/logout.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Nome do usuário no topo
+        const usuarioSpan = document.getElementById("usuarioLogado");
+        const usuarioLogado = JSON.parse(sessionStorage.getItem("smartcondo_loggedInUser"));
+
+        console.log(usuarioLogado);
+
+        if (usuarioLogado && usuarioLogado.name) {
+            const cargo =
+                usuarioLogado.role === "syndic"
+                    ? "Síndico"
+                    : usuarioLogado.role === "resident"
+                        ? "Morador"
+                        : usuarioLogado.role === "employee"
+                            ? "Funcionário"
+                            : "";
+            usuarioSpan.textContent = `${usuarioLogado.name}, ${cargo}`;
+        } else {
+            usuarioSpan.textContent = "Usuário";
+        }
+
+        // Logout da sidebar (primeiro link com id="btnLogout")
+        const btnLogoutSidebar = document.getElementById("btnLogout");
+        if (btnLogoutSidebar) {
+            btnLogoutSidebar.addEventListener("click", (e) => {
+                e.preventDefault();
+                logout();
+            });
+        }
+
+        // Logout do menu flutuante (último link dentro de .more-menu)
+        const logoutMenu = document.querySelector(".more-menu a:last-child");
+        if (logoutMenu) {
+            logoutMenu.addEventListener("click", (e) => {
+                e.preventDefault();
+                logout();
+            });
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartCondo - Gestão de Reservas</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../../../css/sindico-css/dashboard-gestao-reserva.css" />
+  <link rel="stylesheet" href="../../../components/layoutNavbar/layoutNavbar.css" />
+  <link rel="icon" href="../../../assets/img/logo_img.png" type="image/png" />
+
+</head>
+
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="../../../assets/img/smart.png" alt="SmartCondo Logo" />
+        <h2>SmartCondo</h2>
+      </div>
+      <nav class="menu">
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico.html">🏠 Visão Geral</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-morador.html">👥 Moradores</a>
+        <a href="../../../pages/syndic/employee/employee.html">👨‍💼 Funcionários</a>
+        <a href="../../../pages/syndic/communicates/communicates.html">✉️ Comunicados</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-occurrence.html">📋 Ocorrências</a>
+        <a href="../../../pages/syndic/dashboard/dashboard-sindico-ordem-servico.html">🛠️ Ordem de serviços</a>
+        <a href="#" class="active">📅 Gestão de reservas</a>
+        <a href="../../../pages/syndic/reservation/reservation.html">📅 Reservas</a>
+        <a href="#" id="btnLogout">🚪 Sair</a>
+      </nav>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+      <header class="topbar">
+        <div class="search-box">
+          <input type="text" id="campoPesquisa" placeholder="Pesquisar por nome ou unidade..." />
+          <button class="search-btn" id="btnPesquisar">🔍</button>
+        </div>
+
+        <div class="user-info">
+          <span id="usuarioLogado"></span>
+          <img src="../../../assets/icon/profile.svg" alt="Usuário">
+        </div>
+      </header>
+
+      <div class="titulo">
+        <h1>Gestão de Reservas</h1>
+      </div>
+
+      <!-- Onde o JS vai renderizar os cards -->
+      <div class="container-reservas"></div>
+
+      <!-- Lista de resultados -->
+      <div class="resultados-container">
+        <h2>Resultado das solicitações:</h2>
+        <div class="resultados-grid header">
+          <span>Área</span>
+          <span>Solicitante</span>
+          <span>Data/Hora de início</span>
+          <span>Data/Hora de fim</span>
+          <span>Resultado</span>
+        </div>
+        <div id="lista-resultados">
+          <div class="sem-resultados">
+            <p>Nenhuma solicitação processada ainda.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+        <!-- Navbar Mobile -->
+  <nav class="bottom-nav">
+    <a href="../dashboard/dashboard-sindico.html">
+      <span>🏠</span>
+      <p>Visão Geral</p>
+    </a>
+
+    <a href="../dashboard/dashboard-sindico-morador.html">
+      <span>👥</span>
+      <p>Moradores</p>
+    </a>
+
+    <a href="../../../pages/syndic/employee/employee.html">
+      <span>👨‍💼</span>
+      <p>Funcionários</p>
+    </a>
+
+	<a href="../../../pages/syndic/communicates/communicates.html">
+		<span>✉️</span>
+		<p> Comunicados</p>
+	</a>
+
+    <button class="more-btn" id="openMore">
+      <span>➕</span>
+      <p>Mais</p>
+    </button>
+  </nav>
+
+  <!-- Menu Flutuante -->
+
+  <div class="more-menu" id="moreMenu">
+	<a href="../dashboard/dashboard-sindico-occurrence.html">📋 Ocorrências</a>
+    <a href="../dashboard/dashboard-sindico-ordem-servico.html">🛠️ Ordem de serviços</a>
+    <a href="#" class="active">📅 Gestão de reservas</a>
+    <a href="../reservation/reservation.html">📅 Reservas</a>
+    <a href="#" id="btnLogout">🚪 Sair</a>
+  </div>
+
+  <!-- Script de controle -->
+  <script type="module" src="../../../js/dashboard-gestao-reserva.js"></script>
+  <script type="module" src="../communicates/js/index.js"></script>
+</body>
+
+</html>
