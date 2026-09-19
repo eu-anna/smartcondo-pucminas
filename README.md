@@ -77,8 +77,8 @@ A aplicação pode ser acessada através do GitHub Pages:
 
 ### 🔑 Acesso para demonstração
 
-**E-mail:** visitante@smartcondo.com  
-**Senha:** visitante123
+**E-mail:** lidianer@gmail.com 
+**Senha:** 12345
 
 ## 👥 Equipe
 
